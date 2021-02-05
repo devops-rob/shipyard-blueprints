@@ -1,0 +1,32 @@
+container "postgres" {
+    image {
+        name = "postgres:latest"
+    }
+
+    port {
+        local  = 5432
+        host   = 5432
+        remote = 5432
+    }
+
+    env {
+        key   = "POSTGRES_USER"
+        value = "postgres"
+    }
+
+    env {
+        key   = "POSTGRES_PASSWORD"
+        value = "postgres"
+    }
+
+    volume {
+        source      = "./config/postgres/files"
+        destination = "/files"
+    }
+
+    network {
+        name       = "network.public"
+        ip_address = "10.16.0.203"
+    }
+
+}
