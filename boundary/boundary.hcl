@@ -1,17 +1,20 @@
-container "boundary-init" {
+exec_remote "boundary-init" {
     image  {
-        name = "hashicorp/boundary"
+        name = "hashicorp/boundary:0.5.0"
     }
 
-    command = [
+    cmd = "boundary"
+    args = [
         "database",
         "init",
-        "-config=/boundary/config.hcl",
-        "-addr=http://0.0.0.0:9200"
-
+        "-skip-target-creation",
+        "-skip-scopes-creation",
+        "-skip-host-resources-creation",
+        "-skip-auth-method-creation",
+        "-config=/boundary/config.hcl"
     ]
 
-    privileged = true
+    // privileged = true
 
     env {
         key = "BOUNDARY_POSTGRES_URL"
@@ -30,17 +33,18 @@ container "boundary-init" {
 
     depends_on = [
         "container.postgres",
-        "exec_remote.exec_standalone"
+        "exec_remote.psql_checker"
     ]
 
 }
 
 container "boundary" {
     image  {
-        name = "hashicorp/boundary"
+        name = "hashicorp/boundary:0.5.0"
     }
 
     command = [
+        "boundary",
         "server",
         "-config=/boundary/config.hcl"
     ]
@@ -87,6 +91,7 @@ container "boundary" {
     }
 
     depends_on = [
-        "container.boundary-init"
+        "exec_remote.boundary-init",
+        "exec_remote.psql_checker"
     ]
 }

@@ -30,3 +30,18 @@ container "postgres" {
     }
 
 }
+
+exec_remote "psql_checker" {
+
+    target = "container.postgres"
+
+    cmd = "sh"
+    args = [
+        // "-c",
+        "./files/psql-checker.sh"
+
+    ]
+    depends_on = [
+        "container.postgres"
+    ]
+}

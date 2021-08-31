@@ -6,33 +6,29 @@ controller {
 
   database {
     url = "env://BOUNDARY_POSTGRES_URL"
-    #url = "postgresql://postgres:postgres@0.0.0.0:5432/postgres?sslmode=disable"
   }
 }
 
 worker {
   name = "demo-worker-1"
   description = "A default worker created demonstration"
-//   controllers = [
-//     "120.0.0.1",
-//   ]
-  address = "127.0.0.1"
+  address = "boundary.container.shipyard.run"
 }
 
 listener "tcp" {
-  address = "0.0.0.0"
+  address = "boundary.container.shipyard.run"
   purpose = "api"
   tls_disable = true 
 }
 
 listener "tcp" {
-  address = "0.0.0.0"
+  address = "boundary.container.shipyard.run"
   purpose = "cluster"
   tls_disable   = true 
 }
 
 listener "tcp" {
-  address       = "0.0.0.0"
+  address       = "boundary.container.shipyard.run"
   purpose       = "proxy"
   tls_disable   = true 
 }
