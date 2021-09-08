@@ -40,6 +40,11 @@ exec_remote "psql_checker" {
         "./files/psql-checker.sh"
 
     ]
+
+    network {
+        name       = "network.onprem"
+    }
+    
     depends_on = [
         "container.postgres"
     ]
