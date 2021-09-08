@@ -25,7 +25,7 @@ container "postgres" {
     }
 
     network {
-        name       = "network.onprem"
+        name = "network.${var.network}"
     }
 
 }
@@ -42,9 +42,9 @@ exec_remote "psql_checker" {
     ]
 
     network {
-        name       = "network.onprem"
+        name = "network.${var.network}"
     }
-    
+
     depends_on = [
         "container.postgres"
     ]

@@ -1,3 +1,7 @@
+variable "network" {
+  default = "cloud"
+}
+
 exec_remote "boundary-init" {
     image  {
         name = "hashicorp/boundary:0.5.0"
@@ -22,7 +26,7 @@ exec_remote "boundary-init" {
     }
 
     network {
-        name = "network.onprem"
+        name = "network.${var.network}"
     }
 
     volume {
@@ -80,7 +84,7 @@ container "boundary" {
     }
 
     network {
-        name = "network.onprem"
+        name = "network.${var.network}"
     }
 
     volume {
