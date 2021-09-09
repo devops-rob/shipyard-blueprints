@@ -1,10 +1,6 @@
-variable "network" {
-  default = "cloud"
-}
-
 exec_remote "boundary-init" {
     image  {
-        name = "hashicorp/boundary:0.5.0"
+        name = "hashicorp/boundary:${var.boundary_version}"
     }
 
     cmd = "boundary"
@@ -18,11 +14,10 @@ exec_remote "boundary-init" {
         "-config=/boundary/config.hcl"
     ]
 
-    // privileged = true
 
     env {
         key = "BOUNDARY_POSTGRES_URL"
-        value = "postgresql://postgres:postgres@postgres.container.shipyard.run:5432/postgres?sslmode=disable"
+        value = "postgresql://${var.boundary_postgres_user}:${var.boundary_postgres_password}@postgres.container.shipyard.run:5432/postgres?sslmode=disable"
     }
 
     network {
@@ -43,7 +38,7 @@ exec_remote "boundary-init" {
 
 container "boundary" {
     image  {
-        name = "hashicorp/boundary:0.5.0"
+        name = "hashicorp/boundary:${var.boundary_version}"
     }
 
     command = [
@@ -75,7 +70,7 @@ container "boundary" {
 
     env {
         key   = "BOUNDARY_POSTGRES_URL"
-        value = "postgresql://postgres:postgres@postgres.container.shipyard.run:5432/postgres?sslmode=disable"
+        value = "postgresql://${var.boundary_postgres_user}:${var.boundary_postgres_password}@postgres.container.shipyard.run:5432/postgres?sslmode=disable"
     }
 
     env {

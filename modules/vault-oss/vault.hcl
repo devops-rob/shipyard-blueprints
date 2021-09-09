@@ -4,14 +4,14 @@ variable "network" {
 
 container "vault" {
   image {
-    name = "hashicorp/vault"
+    name = "vault:${vault_version}"
   }
 
   command = [
     "vault",
     "server",
     "-dev",
-    "-dev-root-token-id=root",
+    "-dev-root-token-id=${var.vault_token}",
     "-dev-listen-address=0.0.0.0:8200",
   ]
 
@@ -42,11 +42,10 @@ container "vault" {
 
   env {
     key = "VAULT_TOKEN"
-    value = "root"
+    value = var.vault_token
   }
 
   network {
     name = "network.${var.network}"
-    
   }
 }
