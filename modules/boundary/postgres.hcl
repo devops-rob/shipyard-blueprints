@@ -1,6 +1,6 @@
 container "postgres" {
     image {
-        name = "postgres:${boundary_postgres_version}"
+        name = "postgres:${var.boundary_postgres_version}"
     }
 
     port {
