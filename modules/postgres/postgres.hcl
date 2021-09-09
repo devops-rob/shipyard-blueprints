@@ -1,10 +1,6 @@
-variable "network" {
-  default = "cloud"
-}
-
 container "postgres" {
     image {
-        name = "postgres:latest"
+        name = "postgres:${var.postgres_version}"
     }
 
     port {
@@ -15,12 +11,12 @@ container "postgres" {
 
     env {
         key   = "POSTGRES_USER"
-        value = "postgres"
+        value = var.postgres_user
     }
 
     env {
         key   = "POSTGRES_PASSWORD"
-        value = "postgres"
+        value = var.postgres_password
     }
 
     volume {
