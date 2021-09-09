@@ -1,14 +1,10 @@
-variable "network" {
-    default = "cloud"
-}
-
 container "rabbitmq" {
     network {
         name = "network.${var.network}"
     }
 
     image {
-        name = "rabbitmq:3-management"
+        name = "rabbitmq:${var.rabbitmq_version}"
     }
     
     port {
