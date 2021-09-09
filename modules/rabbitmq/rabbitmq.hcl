@@ -11,6 +11,7 @@ container "rabbitmq" {
       host = "15672"
       remote = "15672"
       local = "15672"
+      open_in_browser = "http://localhost:15672"
     }
 
     port {
