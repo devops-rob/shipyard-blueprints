@@ -4,7 +4,7 @@ variable "network" {
 
 container "vault" {
   image {
-    name = "vault:${vault_version}"
+    name = "vault:${var.vault_version}"
   }
 
   command = [
