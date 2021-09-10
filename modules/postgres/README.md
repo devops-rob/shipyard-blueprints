@@ -42,6 +42,7 @@ variable "postgres_user" {
 variable "postgres_password" {
   default = "password"
 }
+
 module "postgres" {
     source = "github.com/devops-rob/shipyard-blueprints/modules//postgres"
 }

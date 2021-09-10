@@ -1,6 +1,6 @@
 # Kafka blueprint for Shipyard
 
-This blueprint will give you a containerised RabbitMQ server.
+This blueprint will give you a containerised Kafka server with Zoo keeper and a UI.
 
 ## Requirements
 

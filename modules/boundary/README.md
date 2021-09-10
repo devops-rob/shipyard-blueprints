@@ -43,6 +43,7 @@ variable "boundary_postgres_user" {
 variable "boundary_postgres_password" {
   default = "password"
 }
+
 module "boundary" {
     source = "github.com/devops-rob/shipyard-blueprints/modules//boundary"
 }
