@@ -19,7 +19,7 @@ network "cloud" {
   subnet = "10.6.0.0/16"
 }
 
-module "boundary" {
+module "rabbitmq" {
     source = "github.com/devops-rob/shipyard-blueprints/modules//rabbitmq"
 }
 ```
@@ -39,7 +39,7 @@ variable "rabbitmq_version" {
   default = "management"
 }
 
-module "boundary" {
+module "rabbitmq" {
     source = "github.com/devops-rob/shipyard-blueprints/modules//rabbitmq"
 }
 ```

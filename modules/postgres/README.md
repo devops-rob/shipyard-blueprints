@@ -19,7 +19,7 @@ network "cloud" {
   subnet = "10.6.0.0/16"
 }
 
-module "boundary" {
+module "postgres" {
     source = "github.com/devops-rob/shipyard-blueprints/modules//postgres"
 }
 ```
@@ -42,7 +42,7 @@ variable "postgres_user" {
 variable "postgres_password" {
   default = "password"
 }
-module "boundary" {
+module "postgres" {
     source = "github.com/devops-rob/shipyard-blueprints/modules//postgres"
 }
 ```

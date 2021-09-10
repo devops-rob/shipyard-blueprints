@@ -19,7 +19,7 @@ network "cloud" {
   subnet = "10.6.0.0/16"
 }
 
-module "boundary" {
+module "vault" {
     source = "github.com/devops-rob/shipyard-blueprints/modules//vault-oss"
 }
 ```
@@ -43,7 +43,7 @@ variable "vault_token" {
   default = "devopsrob"
 }
 
-module "boundary" {
+module "vault" {
     source = "github.com/devops-rob/shipyard-blueprints/modules//vault-oss"
 }
 ```
