@@ -18,5 +18,5 @@ variable "boundary_postgres_password" {
 # Boundary variables
 
 variable "boundary_version" {
-  default = "0.5.0"
+  default = "0.7.0"
 }
