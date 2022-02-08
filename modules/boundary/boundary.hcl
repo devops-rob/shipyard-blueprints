@@ -61,7 +61,6 @@ container "boundary" {
         local = 9200
         remote = 9200
         host = 9200
-        open_in_browser = "/"
     }
 
         port {
