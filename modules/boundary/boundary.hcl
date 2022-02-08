@@ -1,3 +1,13 @@
+template "create_boundary_config" {
+  source = file("./config/boundary/files/config.hcl")
+  destination = "${data("boundary")}/config.hcl"
+}
+
+template "create_boundary_recovery" {
+  source = file("./config/boundary/files/recovery.hcl")
+  destination = "${data("boundary")}/recovery.hcl"
+}
+
 exec_remote "boundary-init" {
     image  {
         name = "hashicorp/boundary:${var.boundary_version}"
@@ -25,9 +35,9 @@ exec_remote "boundary-init" {
     }
 
     volume {
-        source = "./config/boundary/files"
-        destination = "/boundary"
-    }
+    source = data("boundary")
+    destination = "/boundary"
+  }
 
     depends_on = [
         "container.postgres",
@@ -83,10 +93,9 @@ container "boundary" {
     }
 
     volume {
-        source = "./config/boundary/files"
-        destination = "/boundary"
-    }
-
+    source = data("boundary")
+    destination = "/boundary"
+  }
     depends_on = [
         "exec_remote.boundary-init",
         "exec_remote.psql_checker"
