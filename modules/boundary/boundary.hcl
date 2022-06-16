@@ -17,10 +17,10 @@ exec_remote "boundary-init" {
     args = [
         "database",
         "init",
-        #"-skip-target-creation",
-        #"-skip-scopes-creation",
-        #"-skip-host-resources-creation",
-        #"-skip-auth-method-creation",
+        "-skip-target-creation",
+        "-skip-scopes-creation",
+        "-skip-host-resources-creation",
+        "-skip-auth-method-creation",
         "-config=/boundary/config.hcl"
     ]
 
