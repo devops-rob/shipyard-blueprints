@@ -24,4 +24,10 @@ container "rabbitmq" {
       remote = "15671"
       local = "15671"
     }
+    
+    port {
+      host = "15692"
+      remote = "15692"
+      local = "15692"
+    }
 }
